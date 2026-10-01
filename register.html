@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Criar conta — RAGE®</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="loginPage">
+    <div class="announce">RAGE® MEMBERS <span>—</span> CRIAR CONTA</div>
+    <header class="top"><a class="brand" href="index.html"><span class="rlogo minimal-r">R</span><span>RAGE®</span></a>
+        <nav><a href="index.html">CAMISAS</a><a href="jewelry.html">JOIAS</a><a class="active"
+                href="login.html">CONTA</a></nav><a class="cartLink" href="index.html">LOJA</a>
+    </header>
+    <main class="loginShell registerShell">
+        <section class="loginIntro registerIntro"><small>RAGE® / MEMBERS</small>
+            <h1>FAÇA PARTE<br>DA RAGE.</h1>
+            <p>Crie sua conta RAGE® para acessar a área de membro.</p>
+        </section>
+        <section class="loginPanel">
+            <div class="loginBox"><small>NOVA CONTA</small>
+                <h2>CRIAR CONTA.</h2>
+                <form id="registerForm"><label>NOME<input name="name" type="text" autocomplete="name" maxlength="80" placeholder="Seu nome" required></label><label>E-MAIL<input name="email" type="email" autocomplete="email" placeholder="seu@email.com" required></label><label>SENHA<input name="password" type="password" autocomplete="new-password" placeholder="Mínimo 8 caracteres" minlength="8" maxlength="128" required></label><label>CONFIRMAR SENHA<input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" placeholder="Repita sua senha" minlength="8" maxlength="128" required></label><label
+                        class="terms"><input type="checkbox" required><span>LI E ACEITO OS TERMOS E A POLÍTICA DE
+                            PRIVACIDADE.</span></label><button class="loginSubmit" type="submit">CRIAR CONTA →</button>
+                </form>
+                <div class="loginDivider"><span>JÁ TEM CONTA?</span></div><a class="outlineBtn accountLink"
+                    href="login.html">ENTRAR</a>
+                <p class="demoNote" id="registerMessage">SEUS DADOS SERÃO SALVOS COM SEGURANÇA.</p>
+            </div>
+        </section>
+    </main>
+    <script src="auth.js"></script>
+    <script src="register.js"></script>
+</body>
+
+</html>

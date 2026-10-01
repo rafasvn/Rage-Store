@@ -1,0 +1,7 @@
+{
+  "name":"rage-store","version":"3.0.0","private":true,
+  "description":"RAGE Store com autenticação, compras e MySQL",
+  "scripts":{"start":"node server.js","dev":"node --watch server.js"},
+  "engines":{"node":">=22.5.0"},
+  "dependencies":{"mysql2":"^3.15.0"}
+}

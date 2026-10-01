@@ -1,0 +1,1812 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@500;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+body {
+    margin: 0;
+    background: #f3f3f0;
+    color: #0b0b0b;
+    font-family: Manrope, Arial, sans-serif;
+    font-size: 11px
+}
+
+body.locked {
+    overflow: hidden
+}
+
+a {
+    color: inherit
+}
+
+.announce {
+    height: 27px;
+    background: #0b0b0b;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 9px;
+    letter-spacing: .22em
+}
+
+.top {
+    height: 70px;
+    border-bottom: 1px solid #cfcfca;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0 28px;
+    position: sticky;
+    top: 0;
+    background: rgba(243, 243, 240, .92);
+    backdrop-filter: blur(12px);
+    z-index: 20
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: .16em
+}
+
+.rlogo,
+.footerMark {
+    font-family: 'Archivo Black', Manrope, Arial, sans-serif;
+    font-style: italic;
+    font-size: 31px;
+    line-height: 1;
+    transform: skew(-8deg);
+    display: inline-block
+}
+
+.top nav {
+    display: flex;
+    height: 100%;
+    gap: 38px
+}
+
+.top nav a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    letter-spacing: .14em;
+    font-size: 10px;
+    border-bottom: 1px solid transparent
+}
+
+.top nav a:hover,
+.top nav a.active {
+    border-color: #111
+}
+
+.cartLink {
+    justify-self: end;
+    border: 0;
+    background: none;
+    font: inherit;
+    letter-spacing: .12em;
+    cursor: pointer
+}
+
+.cartLink span {
+    display: inline-grid;
+    place-items: center;
+    margin-left: 5px;
+    background: #111;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%
+}
+
+.hero {
+    height: 72vh;
+    min-height: 520px;
+    background: #0a0a0a;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #222
+}
+
+.noise {
+    position: absolute;
+    inset: 0;
+    opacity: .14;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E")
+}
+
+.heroCopy {
+    position: absolute;
+    left: 4vw;
+    bottom: 7vh;
+    z-index: 2
+}
+
+.heroCopy small {
+    letter-spacing: .24em;
+    color: #aaa
+}
+
+.hero h1 {
+    font-family: 'Archivo Black', Manrope, Arial, sans-serif;
+    font-weight: 400;
+    font-size: clamp(75px, 10vw, 165px);
+    line-height: .72;
+    letter-spacing: -.06em;
+    margin: 24px 0 30px
+}
+
+.heroCopy p {
+    line-height: 1.7;
+    letter-spacing: .14em;
+    color: #aaa
+}
+
+.heroCopy a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 6px;
+    letter-spacing: .14em
+}
+
+.heroMark {
+    position: absolute;
+    right: 7vw;
+    top: 50%;
+    transform: translateY(-52%) skew(-9deg);
+    font-family: 'Archivo Black', Manrope, Arial, sans-serif;
+    font-style: italic;
+    font-size: min(46vw, 620px);
+    line-height: .7;
+    color: #f2f2ed;
+    animation: floatR 6s ease-in-out infinite
+}
+
+.heroMark:after {
+    content: '';
+    position: absolute;
+    width: 28%;
+    height: 2px;
+    background: #fff;
+    left: 34%;
+    top: 52%;
+    box-shadow: 0 -15px 0 -1px #fff, 0 15px 0 -1px #fff
+}
+
+.heroSide {
+    position: absolute;
+    right: 28px;
+    bottom: 26px;
+    color: #777;
+    text-align: right;
+    letter-spacing: .15em;
+    line-height: 1.8
+}
+
+@keyframes floatR {
+    50% {
+        transform: translateY(-55%) skew(-9deg) rotate(-1deg)
+    }
+}
+
+.collection {
+    padding: 90px 3.5vw 120px
+}
+
+.sectionHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px
+}
+
+.sectionHead small {
+    letter-spacing: .2em;
+    color: #777
+}
+
+.sectionHead h2 {
+    font-family: 'Archivo Black', Manrope, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 48px;
+    margin: 10px 0 0
+}
+
+.sort {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    letter-spacing: .1em
+}
+
+.sort select {
+    border: 0;
+    border-bottom: 1px solid #111;
+    background: transparent;
+    padding: 8px 25px 8px 2px;
+    font: inherit
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2px;
+    background: #d4d4cf;
+    border: 1px solid #d4d4cf
+}
+
+.card {
+    background: #f3f3f0;
+    cursor: pointer;
+    animation: appear .7s both;
+    animation-delay: var(--delay)
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(18px)
+    }
+
+    to {
+        opacity: 1;
+        transform: none
+    }
+}
+
+.photo {
+    height: min(68vw, 720px);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #e9e9e5
+}
+
+.photo img {
+    width: 88%;
+    height: 88%;
+    object-fit: contain;
+    transition: transform .65s cubic-bezier(.2, .7, .2, 1)
+}
+
+.card:hover .photo img {
+    transform: scale(1.055) rotate(-.4deg)
+}
+
+.index {
+    position: absolute;
+    left: 16px;
+    top: 15px;
+    letter-spacing: .15em;
+    color: #777
+}
+
+.quick {
+    position: absolute;
+    right: 16px;
+    bottom: 15px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: .25s;
+    letter-spacing: .12em
+}
+
+.card:hover .quick {
+    opacity: 1;
+    transform: none
+}
+
+.cardMeta {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 16px 26px;
+    border-top: 1px solid #d4d4cf
+}
+
+.cardMeta h3,
+.cardMeta p {
+    font-size: 10px;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: .07em
+}
+
+.statement {
+    background: #0b0b0b;
+    color: #fff;
+    min-height: 350px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    padding: 50px 4vw
+}
+
+.statement>span {
+    font-family: 'Archivo Black', Manrope, Arial, sans-serif;
+    font-size: 25px
+}
+
+.statement>span:last-child {
+    text-align: right
+}
+
+.statement p {
+    text-align: center;
+    font-family: 'Archivo Black', Manrope, Arial, sans-serif;
+    font-size: clamp(32px, 4vw, 65px);
+    line-height: 1.05;
+    margin: 0
+}
+
+footer {
+    padding: 60px 3.5vw 75px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    gap: 50px;
+    border-top: 1px solid #ccc
+}
+
+.footerMark {
+    text-decoration: none;
+    font-size: 70px
+}
+
+footer b {
+    display: block;
+    margin-bottom: 18px;
+    letter-spacing: .14em
+}
+
+footer p,
+footer a {
+    display: block;
+    color: #666;
+    text-decoration: none;
+    line-height: 1.8;
+    margin: 4px 0
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: #f3f3f0;
+    z-index: 40;
+    display: none;
+    overflow: auto
+}
+
+.modal.open {
+    display: block;
+    animation: fade .25s
+}
+
+@keyframes fade {
+    from {
+        opacity: 0
+    }
+
+    .modal {
+        opacity: 1
+    }
+}
+
+.modalCard {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.55fr .75fr
+}
+
+.close {
+    position: fixed;
+    right: 25px;
+    top: 22px;
+    z-index: 5;
+    border: 0;
+    background: none;
+    font-size: 10px;
+    letter-spacing: .12em;
+    cursor: pointer
+}
+
+.viewer {
+    background: #e8e8e4;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 55px
+}
+
+.viewer img {
+    width: min(82%, 820px);
+    height: 82vh;
+    object-fit: contain;
+    animation: productIn .35s
+}
+
+@keyframes productIn {
+    from {
+        opacity: .4;
+        transform: scale(.98)
+    }
+
+    to {
+        opacity: 1;
+        transform: none
+    }
+}
+
+.viewLabel {
+    position: absolute;
+    left: 24px;
+    top: 24px;
+    letter-spacing: .18em;
+    color: #777
+}
+
+.viewToggle {
+    position: absolute;
+    bottom: 30px;
+    display: flex
+}
+
+.viewToggle button {
+    min-width: 110px;
+    padding: 13px;
+    border: 1px solid #111;
+    background: transparent;
+    font: inherit;
+    letter-spacing: .14em;
+    cursor: pointer
+}
+
+.viewToggle button.active {
+    background: #111;
+    color: #fff
+}
+
+.info {
+    padding: 18vh 50px 50px;
+    border-left: 1px solid #ccc
+}
+
+.info small,
+.info>span,
+#colorWrap>span {
+    display: block;
+    color: #777;
+    letter-spacing: .15em;
+    margin-bottom: 12px
+}
+
+.info h2 {
+    font-family: 'Archivo Black', Manrope, Arial, sans-serif;
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 14px 0
+}
+
+.info>p {
+    font-size: 13px;
+    margin: 0 0 40px
+}
+
+.swatches {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 32px
+}
+
+.swatches button {
+    width: 29px;
+    height: 29px;
+    border-radius: 50%;
+    border: 1px solid #888;
+    box-shadow: inset 0 0 0 3px #f3f3f0;
+    cursor: pointer
+}
+
+.swatches [data-color=black] {
+    background: #111
+}
+
+.swatches [data-color=white] {
+    background: #fff
+}
+
+.swatches button.selected {
+    outline: 1px solid #111;
+    outline-offset: 3px
+}
+
+.sizes {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 28px
+}
+
+.sizes button {
+    min-width: 50px;
+    padding: 13px 8px;
+    border: 1px solid #aaa;
+    background: transparent;
+    cursor: pointer
+}
+
+.sizes button.selected {
+    background: #111;
+    color: #fff
+}
+
+.add {
+    width: 100%;
+    padding: 17px;
+    border: 1px solid #111;
+    background: #111;
+    color: #fff;
+    font-size: 10px;
+    letter-spacing: .13em;
+    cursor: pointer;
+    transition: .2s
+}
+
+.add:hover {
+    background: #f3f3f0;
+    color: #111
+}
+
+.copy {
+    font-size: 10px !important;
+    color: #777;
+    line-height: 1.8;
+    border-top: 1px solid #ccc;
+    padding-top: 22px;
+    margin-top: 28px !important
+}
+
+.drawer {
+    position: fixed;
+    right: -440px;
+    top: 0;
+    width: min(440px, 100%);
+    height: 100vh;
+    background: #111;
+    color: #fff;
+    z-index: 60;
+    padding: 35px;
+    transition: right .35s cubic-bezier(.2, .7, .2, 1)
+}
+
+.drawer.open {
+    right: 0
+}
+
+.drawer>button {
+    float: right;
+    background: none;
+    border: 0;
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer
+}
+
+.eyebrow {
+    letter-spacing: .18em;
+    color: #777
+}
+
+.drawer h2 {
+    font-family: 'Archivo Black', Manrope, Arial, sans-serif;
+    font-size: 35px;
+    font-weight: 400
+}
+
+.cartRow {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #333;
+    padding: 18px 0;
+    gap: 20px
+}
+
+.cartRow small {
+    display: block;
+    color: #777;
+    margin-top: 7px
+}
+
+.total {
+    border-top: 1px solid #555;
+    margin-top: 30px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between
+}
+
+.empty {
+    color: #777;
+    margin-top: 35px
+}
+
+@media(max-width:750px) {
+    .announce {
+        font-size: 7px
+    }
+
+    .top {
+        height: 62px;
+        padding: 0 14px;
+        grid-template-columns: 1fr auto
+    }
+
+    .brand>span:last-child {
+        display: none
+    }
+
+    .top nav {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        gap: 18px
+    }
+
+    .top nav a {
+        font-size: 8px
+    }
+
+    .cartLink {
+        font-size: 0
+    }
+
+    .cartLink span {
+        font-size: 9px
+    }
+
+    .hero {
+        height: 65vh
+    }
+
+    .heroMark {
+        font-size: 72vw;
+        right: -4vw
+    }
+
+    .heroCopy {
+        left: 18px
+    }
+
+    .hero h1 {
+        font-size: 76px
+    }
+
+    .heroSide {
+        display: none
+    }
+
+    .collection {
+        padding: 65px 12px 80px
+    }
+
+    .sectionHead h2 {
+        font-size: 36px
+    }
+
+    .sort label {
+        display: none
+    }
+
+    .grid {
+        grid-template-columns: 1fr
+    }
+
+    .photo {
+        height: 115vw
+    }
+
+    .statement {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding: 65px 20px
+    }
+
+    .statement>span {
+        text-align: center !important
+    }
+
+    .statement p {
+        font-size: 36px
+    }
+
+    footer {
+        grid-template-columns: 1fr 1fr;
+        padding: 45px 20px
+    }
+
+    .footerMark {
+        grid-column: 1/-1
+    }
+
+    .modalCard {
+        grid-template-columns: 1fr
+    }
+
+    .viewer {
+        min-height: 65vh;
+        padding: 35px 10px
+    }
+
+    .viewer img {
+        height: 52vh;
+        width: 100%
+    }
+
+    .info {
+        padding: 45px 22px;
+        border-left: 0
+    }
+
+    .close {
+        background: #f3f3f0;
+        padding: 10px
+    }
+
+    .viewToggle {
+        bottom: 15px
+    }
+}
+
+/* RAGE monogram — minimal, sharp and compact */
+.minimal-r {
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: -.16em;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase
+}
+
+.rlogo.minimal-r {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    font-size: 25px;
+    transform: skew(-10deg);
+    letter-spacing: -.16em
+}
+
+.rlogo.minimal-r:after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 1px;
+    background: currentColor;
+    left: 5px;
+    top: 17px;
+    transform: rotate(-8deg);
+    opacity: .9
+}
+
+.heroMark.minimal-r {
+    letter-spacing: -.14em
+}
+
+.heroMark.minimal-r:after {
+    width: 25%;
+    left: 34%;
+    height: 1px;
+    box-shadow: none;
+    transform: rotate(-7deg)
+}
+
+.footerMark.minimal-r {
+    letter-spacing: -.15em;
+    transform: skew(-10deg)
+}
+
+.jewelHero {
+    min-height: 58vh;
+    background: #0a0a0a;
+    color: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    padding: 6vh 4vw;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #222
+}
+
+.jewelHero small {
+    letter-spacing: .22em;
+    color: #888
+}
+
+.jewelHero h1 {
+    font-family: 'Archivo Black', Manrope, Arial, sans-serif;
+    font-weight: 400;
+    font-size: clamp(72px, 9vw, 145px);
+    line-height: .76;
+    letter-spacing: -.055em;
+    margin: 25px 0
+}
+
+.jewelHero p {
+    letter-spacing: .2em;
+    color: #888
+}
+
+.jewelMonogram {
+    position: absolute;
+    right: 6vw;
+    top: 50%;
+    transform: translateY(-50%) skew(-10deg);
+    font-size: min(37vw, 500px);
+    line-height: .7;
+    color: #eee;
+    opacity: .96
+}
+
+.jewelMonogram:after {
+    content: '';
+    position: absolute;
+    width: 24%;
+    height: 2px;
+    background: #eee;
+    left: 35%;
+    top: 53%;
+    transform: rotate(-8deg)
+}
+
+.jewelryCollection {
+    padding-top: 75px
+}
+
+.jewelryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+}
+
+.jewelPhoto {
+    background: radial-gradient(circle at 50% 45%, #f8f8f5 0, #e7e7e2 55%, #deded8 100%)
+}
+
+.jewelPhoto img {
+    width: 76%;
+    height: 76%;
+    filter: drop-shadow(0 22px 25px rgba(0, 0, 0, .13))
+}
+
+.jewelViewer {
+    background: radial-gradient(circle at 50% 45%, #f7f7f3 0, #e3e3de 68%, #d9d9d3 100%)
+}
+
+.jewelViewer img {
+    filter: drop-shadow(0 28px 30px rgba(0, 0, 0, .18))
+}
+
+@media(max-width:750px) {
+    .jewelHero {
+        min-height: 56vh;
+        grid-template-columns: 1fr;
+        padding: 45px 18px
+    }
+
+    .jewelHero h1 {
+        font-size: 72px
+    }
+
+    .jewelMonogram {
+        font-size: 75vw;
+        right: -2vw;
+        opacity: .22
+    }
+
+    .jewelryGrid {
+        grid-template-columns: 1fr
+    }
+
+    .rlogo.minimal-r {
+        font-size: 24px
+    }
+}
+
+/* RAGE — compact minimal campaign strip */
+.hero {
+    height: 118px;
+    min-height: 0;
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #222;
+    overflow: hidden
+}
+
+.hero .noise {
+    opacity: .08
+}
+
+.heroCopy {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: 100%;
+    padding: 0 3.5vw;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 28px;
+    z-index: 2
+}
+
+.heroCopy small {
+    white-space: nowrap
+}
+
+.hero h1 {
+    font-size: 30px;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: -.035em;
+    white-space: nowrap
+}
+
+.hero h1 br {
+    display: none
+}
+
+.heroCopy p {
+    margin: 0;
+    text-align: center;
+    font-size: 9px;
+    line-height: 1.6
+}
+
+.heroCopy a {
+    margin: 0;
+    white-space: nowrap;
+    justify-self: end
+}
+
+.heroMark,
+.heroSide {
+    display: none
+}
+
+.jewelHero {
+    min-height: 118px;
+    height: 118px;
+    display: flex;
+    align-items: center;
+    padding: 0 3.5vw
+}
+
+.jewelHero>div:first-child {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 28px
+}
+
+.jewelHero small {
+    white-space: nowrap
+}
+
+.jewelHero h1 {
+    font-size: 30px;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: -.035em;
+    text-align: center
+}
+
+.jewelHero h1 br {
+    display: none
+}
+
+.jewelHero p {
+    margin: 0;
+    text-align: right;
+    font-size: 9px;
+    white-space: nowrap
+}
+
+.jewelMonogram {
+    display: none
+}
+
+@media(max-width:750px) {
+    .hero {
+        height: 96px;
+        min-height: 0
+    }
+
+    .heroCopy {
+        left: auto;
+        padding: 0 14px;
+        grid-template-columns: 1fr auto;
+        gap: 8px 16px
+    }
+
+    .heroCopy small {
+        font-size: 7px
+    }
+
+    .hero h1 {
+        font-size: 25px;
+        grid-row: 1/3;
+        grid-column: 2
+    }
+
+    .heroCopy p {
+        font-size: 7px;
+        text-align: left
+    }
+
+    .heroCopy a {
+        display: none
+    }
+
+    .jewelHero {
+        height: 96px;
+        min-height: 0;
+        padding: 0 14px
+    }
+
+    .jewelHero>div:first-child {
+        grid-template-columns: 1fr auto;
+        gap: 8px 16px
+    }
+
+    .jewelHero small {
+        font-size: 7px
+    }
+
+    .jewelHero h1 {
+        font-size: 25px;
+        grid-row: 1/3;
+        grid-column: 2
+    }
+
+    .jewelHero p {
+        font-size: 7px;
+        text-align: left
+    }
+}
+
+/* RAGE typography refresh — thicker, minimal */
+body {
+    font-weight: 600;
+    letter-spacing: -.01em
+}
+
+.announce,
+.top nav a,
+.cartLink,
+.sort,
+.cardMeta h3,
+.cardMeta p,
+.info small,
+.info>span,
+#colorWrap>span,
+.add,
+footer b {
+    font-weight: 800
+}
+
+.sectionHead h2,
+.hero h1,
+.jewelHero h1,
+.statement p,
+.info h2,
+.drawer h2 {
+    font-family: 'Archivo Black', Manrope, Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: -.055em
+}
+
+.minimal-r {
+    font-family: 'Archivo Black', Manrope, Arial, sans-serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    letter-spacing: -.13em !important
+}
+
+.rlogo.minimal-r,
+.footerMark.minimal-r {
+    transform: skew(-7deg)
+}
+
+/* Login — front-end only */
+.loginShell {
+    min-height: calc(100vh - 97px);
+    display: grid;
+    grid-template-columns: 1.05fr .95fr
+}
+
+.loginIntro {
+    position: relative;
+    background: #0b0b0b;
+    color: #fff;
+    padding: 8vw 6vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden
+}
+
+.loginIntro small {
+    letter-spacing: .2em;
+    color: #777
+}
+
+.loginIntro h1 {
+    font-family: 'Archivo Black', Manrope, sans-serif;
+    font-size: clamp(52px, 7vw, 112px);
+    line-height: .82;
+    letter-spacing: -.07em;
+    margin: 22px 0 28px;
+    position: relative;
+    z-index: 2
+}
+
+.loginIntro p {
+    max-width: 430px;
+    color: #8b8b8b;
+    line-height: 1.8;
+    letter-spacing: .02em;
+    position: relative;
+    z-index: 2
+}
+
+.loginR {
+    position: absolute;
+    right: -3vw;
+    top: 4vh;
+    font-size: min(43vw, 600px);
+    line-height: .8;
+    color: #151515;
+    transform: skew(-7deg)
+}
+
+.loginPanel {
+    display: grid;
+    place-items: center;
+    padding: 55px 7vw;
+    background: #f3f3f0
+}
+
+.loginBox {
+    width: min(100%, 460px)
+}
+
+.loginBox>small {
+    letter-spacing: .18em;
+    color: #777
+}
+
+.loginBox h2 {
+    font-family: 'Archivo Black', Manrope, sans-serif;
+    font-size: 34px;
+    letter-spacing: -.045em;
+    margin: 15px 0 42px
+}
+
+.loginBox form>label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: .16em;
+    margin: 0 0 24px
+}
+
+.loginBox input[type=email],
+.loginBox input[type=password] {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    border: 0;
+    border-bottom: 1px solid #999;
+    background: transparent;
+    padding: 14px 2px;
+    font: 600 14px Manrope, Arial;
+    outline: none
+}
+
+.loginBox input:focus {
+    border-color: #111
+}
+
+.loginOptions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 6px 0 30px;
+    font-size: 9px;
+    letter-spacing: .08em
+}
+
+.loginOptions a {
+    color: #666
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 7px
+}
+
+.loginSubmit,
+.outlineBtn {
+    width: 100%;
+    padding: 17px;
+    border: 1px solid #111;
+    font: 800 10px Manrope, Arial;
+    letter-spacing: .12em;
+    cursor: pointer
+}
+
+.loginSubmit {
+    background: #111;
+    color: #fff
+}
+
+.outlineBtn {
+    background: transparent;
+    color: #111
+}
+
+.loginSubmit:hover {
+    background: #292929
+}
+
+.outlineBtn:hover {
+    background: #111;
+    color: #fff
+}
+
+.loginDivider {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #999;
+    margin: 22px 0;
+    font-size: 8px
+}
+
+.loginDivider:before,
+.loginDivider:after {
+    content: '';
+    height: 1px;
+    background: #ccc;
+    flex: 1
+}
+
+.demoNote {
+    margin-top: 25px;
+    color: #888;
+    font-size: 8px;
+    letter-spacing: .1em;
+    line-height: 1.6;
+    text-align: center
+}
+
+@media(max-width:750px) {
+    .loginShell {
+        grid-template-columns: 1fr
+    }
+
+    .loginIntro {
+        min-height: 38vh;
+        padding: 55px 20px 35px
+    }
+
+    .loginIntro h1 {
+        font-size: 54px
+    }
+
+    .loginR {
+        font-size: 70vw;
+        right: -8vw
+    }
+
+    .loginPanel {
+        padding: 50px 20px 70px
+    }
+
+    .loginBox h2 {
+        font-size: 28px
+    }
+
+    .top nav {
+        gap: 12px
+    }
+
+    .top nav a {
+        font-size: 7px
+    }
+}
+
+/* Footer refinement + register */
+.statementClean {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 260px;
+    padding: 55px 20px
+}
+
+.statementClean p {
+    max-width: 1000px
+}
+
+.cleanFooter {
+    grid-template-columns: 2fr 1fr 1fr;
+    padding: 55px 3.5vw 65px;
+    background: #f3f3f0
+}
+
+.cleanFooter>div:first-child b {
+    font-family: 'Archivo Black', Manrope, sans-serif;
+    font-size: 24px;
+    letter-spacing: -.04em
+}
+
+.cleanFooter a {
+    transition: color .2s, transform .2s
+}
+
+.cleanFooter a:hover {
+    color: #111;
+    transform: translateX(3px)
+}
+
+.accountLink {
+    display: block;
+    text-align: center;
+    text-decoration: none
+}
+
+.registerIntro:after {
+    content: 'RAGE';
+    position: absolute;
+    right: -2vw;
+    bottom: -2vw;
+    font-family: 'Archivo Black', Manrope, sans-serif;
+    font-size: min(15vw, 210px);
+    letter-spacing: -.09em;
+    color: #151515;
+    line-height: .75
+}
+
+.registerIntro>* {
+    position: relative;
+    z-index: 2
+}
+
+.terms {
+    display: flex !important;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5
+}
+
+.terms input {
+    margin-top: 1px;
+    accent-color: #111
+}
+
+.registerShell .loginBox h2 {
+    margin-bottom: 32px
+}
+
+@media(max-width:750px) {
+    .cleanFooter {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px
+    }
+
+    .cleanFooter>div:first-child {
+        grid-column: 1/-1
+    }
+
+    .statementClean {
+        min-height: 220px
+    }
+
+    .registerIntro:after {
+        font-size: 30vw
+    }
+}
+
+/* Cart item controls */
+.cartActions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 9px;
+    flex-shrink: 0
+}
+
+.removeItem {
+    background: none;
+    border: 0;
+    border-bottom: 1px solid #666;
+    color: #888;
+    padding: 2px 0;
+    font: 600 9px/1.2 Manrope, Arial, sans-serif;
+    letter-spacing: .12em;
+    cursor: pointer;
+    transition: color .2s, border-color .2s
+}
+
+.removeItem:hover {
+    color: #fff;
+    border-color: #fff
+}
+
+/* RAGE 3D jewelry viewer */
+.jewelViewTabs {
+    position: absolute;
+    left: 18px;
+    bottom: 18px;
+    z-index: 4;
+    display: flex;
+    gap: 6px
+}
+
+.jewelViewTabs button {
+    border: 1px solid rgba(255, 255, 255, .25);
+    background: rgba(0, 0, 0, .62);
+    color: #aaa;
+    padding: 10px 14px;
+    font: 700 11px/1 inherit;
+    letter-spacing: .08em;
+    cursor: pointer
+}
+
+.jewelViewTabs button.selected {
+    background: #fff;
+    color: #111;
+    border-color: #fff
+}
+
+.modelWrap {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    background: radial-gradient(circle at 50% 42%, #272727 0, #111 45%, #080808 100%);
+    position: relative
+}
+
+.modelWrap[hidden] {
+    display: none !important
+}
+
+.modelWrap model-viewer {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    display: block
+}
+
+.modelWrap p {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    margin: 0;
+    color: #888;
+    font-size: 10px;
+    letter-spacing: .13em;
+    white-space: nowrap;
+    pointer-events: none
+}
+
+.jewelViewer {
+    position: relative
+}
+
+.jewelViewer>img[hidden] {
+    display: none !important
+}
+
+@media(max-width:760px) {
+
+    .modelWrap,
+    .modelWrap model-viewer {
+        min-height: 420px
+    }
+
+    .jewelViewTabs {
+        left: 12px;
+        bottom: 12px
+    }
+
+    .modelWrap p {
+        bottom: 62px;
+        font-size: 9px
+    }
+}
+
+/* authenticated account */
+.accountData {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    margin: 30px 0 36px;
+    padding: 22px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd
+}
+
+.accountData span {
+    font-size: 9px;
+    letter-spacing: .16em;
+    color: #888;
+    margin-top: 13px
+}
+
+.accountData span:first-child {
+    margin-top: 0
+}
+
+.accountData b {
+    font-size: 14px;
+    letter-spacing: -.01em
+}
+
+.loginSubmit:disabled {
+    opacity: .55;
+    cursor: wait
+}
+
+.demoNote {
+    min-height: 18px
+}
+
+.checkoutBtn {
+    display: block;
+    margin-top: 18px;
+    padding: 16px;
+    text-align: center;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em
+}
+
+.checkoutShell {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 70vh;
+    padding: 70px 6%;
+    gap: 8vw
+}
+
+.checkoutShell h1,
+.successShell h1 {
+    font-size: clamp(44px, 7vw, 92px);
+    line-height: .86;
+    letter-spacing: -.06em;
+    margin: 15px 0 24px
+}
+
+.checkoutItems {
+    margin-top: 40px;
+    border-top: 1px solid #ddd
+}
+
+.checkoutRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 12px
+}
+
+.checkoutRow span {
+    display: grid;
+    gap: 5px
+}
+
+.checkoutRow small {
+    color: #777
+}
+
+.checkoutTotal {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    font-size: 13px
+}
+
+.loginBox input:not([type=checkbox]) {
+    width: 100%;
+    box-sizing: border-box;
+    border: 0;
+    border-bottom: 1px solid #bbb;
+    padding: 12px 0;
+    background: transparent;
+    font: inherit
+}
+
+.paymentDemo {
+    display: grid;
+    gap: 7px;
+    margin: 28px 0;
+    padding: 18px;
+    background: #f2f2f2;
+    font-size: 11px
+}
+
+.paymentDemo small {
+    color: #666;
+    line-height: 1.5
+}
+
+.ordersBlock {
+    margin: 34px 0
+}
+
+.ordersBlock>small {
+    display: block;
+    margin-bottom: 12px
+}
+
+.orderCard {
+    padding: 16px 0;
+    border-top: 1px solid #ddd;
+    font-size: 11px
+}
+
+.orderCard>div {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px
+}
+
+.orderCard strong {
+    display: inline-block;
+    margin: 8px 0;
+    padding: 4px 7px;
+    background: #111;
+    color: #fff;
+    font-size: 9px
+}
+
+.orderCard p {
+    line-height: 1.7;
+    color: #555
+}
+
+.successShell {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 100px 6%;
+    text-align: center
+}
+
+.successMark {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #111;
+    color: #fff;
+    font-size: 24px
+}
+
+.successLink {
+    display: block;
+    max-width: 330px;
+    margin: 30px auto 16px;
+    text-decoration: none
+}
+
+.backStore {
+    font-size: 10px;
+    color: #555;
+    letter-spacing: .12em
+}
+
+@media(max-width:760px) {
+    .checkoutShell {
+        grid-template-columns: 1fr;
+        padding: 45px 6%
+    }
+}
+
+/* Cart checkout — RAGE */
+.cartSummary {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #d9d9d9
+}
+
+.cartHint {
+    display: block;
+    margin: -6px 0 14px;
+    color: #777;
+    font-size: 9px;
+    letter-spacing: .08em;
+    text-transform: uppercase
+}
+
+.checkoutBtn {
+    border: 1px solid #111;
+    transition: transform .18s ease, background .18s ease, color .18s ease
+}
+
+.checkoutBtn:hover {
+    transform: translateY(-1px);
+    background: #2a2a2a
+}
+
+.checkoutBtn.disabled {
+    pointer-events: none;
+    opacity: .35
+}
+
+.continueShopping {
+    width: 100%;
+    margin-top: 8px;
+    padding: 13px;
+    border: 1px solid #bbb;
+    background: transparent;
+    color: #111;
+    font: inherit;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    cursor: pointer
+}
+
+.continueShopping:hover {
+    background: #eee
+}
+
+.qtyControl {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px
+}
+
+.qtyBtn {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #bbb;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px
+}
+
+.qtyValue {
+    min-width: 18px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 800
+}

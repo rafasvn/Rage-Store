@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Joias — RAGE®</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js"></script>
+</head>
+
+<body>
+    <div class="announce">RAGE® JEWELRY <span>—</span></div>
+    <header class="top"><a class="brand" href="index.html"><span class="rlogo minimal-r"
+                aria-label="RAGE">R</span><span>RAGE®</span></a>
+        <nav><a href="index.html">CAMISAS</a><a class="active" href="jewelry.html">JOIAS</a><a
+                href="login.html">ENTRAR</a></nav><button class="cartLink" id="cartBtn">CARRINHO <span
+                id="cartCount">0</span></button>
+    </header>
+    <section class="jewelHero">
+        <div><small>02 / RAGE® JEWELRY</small>
+            <h1>JEWELRY<br></h1>
+            <p>METAL. STONE. RAGE.</p>
+        </div>
+        <div class="jewelMonogram minimal-r">R</div>
+    </section>
+    <main class="collection jewelryCollection">
+        <div class="sectionHead">
+            <div><small>RAGE® / 2026</small>
+                <h2>JOIAS</h2>
+            </div>
+            <div class="sort"><label for="jewelSort">ORDENAR</label><select id="jewelSort">
+                    <option value="default">PADRÃO</option>
+                    <option value="low">MENOR PREÇO</option>
+                    <option value="high">MAIOR PREÇO</option>
+                </select></div>
+        </div>
+        <section id="jewelryGrid" class="grid jewelryGrid"></section>
+    </main>
+    <section class="statement statementClean">
+        <p>MADE TO<br>LEAVE A MARK.</p>
+    </section>
+    <footer class="cleanFooter">
+        <div><b>RAGE®</b>
+            <p>Independent label.<br>Portugal, 2026.</p>
+        </div>
+        <div><b>NAVEGAÇÃO</b><a href="index.html">Camisas</a><a href="jewelry.html">Joias</a><a href="login.html">Minha
+                conta</a></div>
+        <div><b>SUPORTE</b><a href="#">Envio e entrega</a><a href="#">Trocas e devoluções</a></div>
+    </footer>
+    <div class="modal" id="modal">
+        <div class="modalCard"><button class="close" id="close">FECHAR ×</button>
+            <div class="viewer jewelViewer">
+                <div class="viewLabel">RAGE® JEWELRY</div>
+                <div class="jewelViewTabs" role="tablist" aria-label="Visualização da joia">
+                    <button type="button" class="selected" id="photoTab">FOTO</button>
+                    <button type="button" id="modelTab">3D / 360°</button>
+                </div>
+                <img id="mainImg" alt="Joia RAGE">
+                <div class="modelWrap" id="modelWrap" hidden>
+                    <model-viewer id="jewelModel" src="assets/models/rage-bracelet.glb" alt="Modelo 3D da Pulseira RAGE R" camera-controls auto-rotate rotation-per-second="18deg" shadow-intensity="1" exposure="1.15" environment-image="neutral" interaction-prompt="auto"></model-viewer>
+                    <p>ARRASTE PARA GIRAR · PINÇA/SCROLL PARA ZOOM</p>
+                </div>
+            </div>
+            <div class="info"><small>RAGE® JEWELRY</small>
+                <h2 id="productName"></h2>
+                <p id="price"></p><span>TAMANHO</span>
+                <div class="sizes jewelSizes"><button class="selected">18 CM</button><button>20 CM</button><button>22
+                        CM</button></div><button class="add" id="add">ADICIONAR AO CARRINHO</button>
+                <p class="copy" id="productCopy"></p>
+            </div>
+        </div>
+    </div>
+    <div class="drawer" id="drawer"><button id="drawerClose">×</button>
+        <p class="eyebrow">RAGE®</p>
+        <h2>SEU CARRINHO</h2>
+        <div id="cartItems"></div>
+        <div class="total">TOTAL <span id="total">€0,00</span></div>
+        <a class="checkoutBtn" id="checkoutBtn" href="checkout.html">FINALIZAR COMPRA →</a>
+    </div>
+    <script src="jewelry.js"></script>
+    <script src="auth.js"></script>
+</body>
+
+</html>

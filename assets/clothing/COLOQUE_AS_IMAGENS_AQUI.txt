@@ -1,0 +1,1 @@
+Coloque aqui as fotos da roupa. Use os nomes indicados no shop.html, por exemplo: rage-oversized-tee.jpg, rage-heavy-hoodie.jpg, etc.

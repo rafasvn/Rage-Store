@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Entrar — RAGE®</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="loginPage">
+    <div class="announce">RAGE® MEMBERS <span>—</span> DROP 001</div>
+    <header class="top"><a class="brand" href="index.html"><span class="rlogo minimal-r">R</span><span>RAGE®</span></a>
+        <nav><a href="index.html">CAMISAS</a><a href="jewelry.html">JOIAS</a><a class="active"
+                href="login.html">ENTRAR</a></nav><a class="cartLink" href="index.html">LOJA</a>
+    </header>
+    <main class="loginShell">
+        <section class="loginIntro"><span class="loginR minimal-r">R</span><small>RAGE® / MEMBERS</small>
+            <h1>ENTRE NA<br>RAGE.</h1>
+            <p>Acesse sua conta RAGE® com autenticação real e sessão segura.</p>
+        </section>
+        <section class="loginPanel">
+            <div class="loginBox"><small>01 / LOGIN</small>
+                <h2>BEM-VINDO DE VOLTA.</h2>
+                <form id="loginForm"><label>E-MAIL<input name="email" type="email" autocomplete="email" placeholder="seu@email.com" required></label><label>SENHA<input name="password" type="password" autocomplete="current-password" placeholder="••••••••" required></label>
+                    <div class="loginOptions"><label class="remember"><input type="checkbox"> LEMBRAR DE MIM</label><a
+                            href="#">ESQUECI A SENHA</a></div><button class="loginSubmit" type="submit">ENTRAR
+                        →</button>
+                </form>
+                <div class="loginDivider"><span>OU</span></div><a class="outlineBtn accountLink"
+                    href="register.html">CRIAR CONTA</a>
+                <p class="demoNote" id="loginMessage">ENTRE COM SEU E-MAIL E SENHA.</p>
+            </div>
+        </section>
+    </main>
+    <script src="auth.js"></script>
+    <script src="login.js"></script>
+</body>
+
+</html>

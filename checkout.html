@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Checkout — RAGE®</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="loginPage">
+    <div class="announce">RAGE® — CHECKOUT SEGURO</div>
+    <header class="top"><a class="brand" href="index.html"><span class="rlogo minimal-r">R</span><span>RAGE®</span></a>
+        <nav><a href="index.html">CAMISAS</a><a href="jewelry.html">JOIAS</a><a href="account.html">CONTA</a></nav>
+    </header>
+    <main class="checkoutShell">
+        <section><small>RAGE® / COMPRA</small>
+            <h1>FINALIZAR<br>PEDIDO.</h1>
+            <p>Confirme os produtos e informe o endereço de entrega.</p>
+            <div id="checkoutItems" class="checkoutItems"></div>
+            <div class="checkoutTotal">TOTAL <b id="checkoutTotal">€ 0,00</b></div>
+        </section>
+        <section class="loginPanel">
+            <div class="loginBox"><small>ENTREGA</small>
+                <h2>DADOS DO PEDIDO</h2>
+                <form id="checkoutForm"><label>NOME COMPLETO<input id="customerName" required
+                            minlength="2"></label><label>ENDEREÇO<input id="address" required minlength="5"
+                            placeholder="Rua, número"></label><label>CIDADE<input id="city" required
+                            minlength="2"></label><label>CÓDIGO POSTAL<input id="postalCode" required minlength="4"
+                            placeholder="0000-000"></label>
+                    <div class="paymentDemo"><b>PAGAMENTO</b><span>DEMONSTRAÇÃO PAP</span><small>O pedido é registado no
+                            banco de dados. Nenhum pagamento real é processado.</small></div><button class="loginSubmit"
+                        id="buyBtn" type="submit">CONFIRMAR PEDIDO →</button>
+                    <p class="demoNote" id="checkoutMessage"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script src="checkout.js"></script>
+</body>
+
+</html>
