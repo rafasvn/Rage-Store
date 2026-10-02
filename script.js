@@ -11,3 +11,16 @@ let cart = JSON.parse(localStorage.rageCart || '[]'); function cartRender() { $(
 
 // Sincroniza nome/preço/estado com o catálogo real do MySQL.
 (async()=>{try{const r=await fetch('/api/products');if(!r.ok)return;const d=await r.json();const map=new Map(d.products.map(p=>[p.id,p]));products.forEach(p=>{const db=map.get(p.id);if(db){p.name=db.name;p.price=Number(db.price)}});render()}catch{}})();
+
+// Sincroniza vitrine/carrinho com o catálogo real do MySQL.
+(async function syncStoreCatalog(){
+  try{
+    const r=await fetch('/api/products',{cache:'no-store'}); if(!r.ok)return;
+    const d=await r.json(), active=new Map((d.products||[]).map(p=>[p.id,p]));
+    for(const p of products){const db=active.get(p.id);if(db){p.name=db.name;p.price=Number(db.price)}}
+    const visible=products.filter(p=>active.has(p.id));
+    cart=cart.filter(x=>active.has(x.id));
+    render(visible);cartRender();
+    if(!visible.length && $('grid')) $('grid').innerHTML='<div class="catalogEmpty"><b>CATÁLOGO TEMPORARIAMENTE INDISPONÍVEL</b><span>Os produtos estão desativados. Um administrador pode restaurá-los no painel.</span></div>';
+  }catch(e){console.warn('Catálogo offline; usando vitrine local.',e)}
+})();

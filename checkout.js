@@ -15,4 +15,14 @@ form.addEventListener('submit',async e=>{e.preventDefault();if(!cart.length)retu
   const items=cart.map(x=>({productId:x.id||catalogByName[x.name],quantity:1,color:x.color||null,size:x.size||null}));
   try{const r=await fetch('/api/orders',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({customerName:document.getElementById('customerName').value,address:document.getElementById('address').value,city:document.getElementById('city').value,postalCode:document.getElementById('postalCode').value,items})});const d=await r.json();if(r.status===401){location.href='login.html?next=checkout.html';return}if(!r.ok)throw new Error(d.error||'Não foi possível finalizar o pedido.');localStorage.removeItem('rageCart');location.href=`order-success.html?id=${encodeURIComponent(d.order.id)}`;}catch(err){msg.textContent=err.message;buy.disabled=false;}
 });
-render();
+async function syncCheckoutCatalog(){
+  try{
+    const r=await fetch('/api/products',{cache:'no-store'});if(!r.ok)return;
+    const d=await r.json(),active=new Map((d.products||[]).map(p=>[p.id,p]));
+    const before=cart.length;
+    cart=cart.filter(x=>active.has(x.id||catalogByName[x.name])).map(x=>{const db=active.get(x.id||catalogByName[x.name]);return {...x,id:db.id,name:db.name,price:Number(db.price)}});
+    localStorage.setItem('rageCart',JSON.stringify(cart));render();
+    if(before!==cart.length)msg.textContent='Removemos do carrinho produtos que estão indisponíveis.';
+  }catch{}
+}
+render();syncCheckoutCatalog();

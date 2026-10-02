@@ -16,3 +16,5 @@ async function saveOrder(e){const tr=e.target.closest('tr');try{await api('/api/
 document.querySelectorAll('.adminTab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.adminTab,.adminView').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('view-'+b.dataset.tab).classList.add('active')});
 $('adminLogout').onclick=async()=>{await fetch('/api/logout',{method:'POST'});location.href='login.html'};
 load().catch(e=>msg(e.message.toUpperCase()));
+
+$('restoreCatalog').onclick=async()=>{if(!confirm('Restaurar e reativar os produtos originais da RAGE?'))return;try{await api('/api/admin/products/restore',{method:'POST'});msg('CATÁLOGO RESTAURADO.');await load()}catch(e){msg(e.message.toUpperCase())}};

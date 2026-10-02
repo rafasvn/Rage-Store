@@ -11,3 +11,12 @@ function setJewelView(mode){const is3d=mode==='3d';mainImg.hidden=is3d;modelWrap
 photoTab.addEventListener('click',()=>setJewelView('photo'));modelTab.addEventListener('click',()=>setJewelView('3d'));
 
 (async()=>{try{const r=await fetch('/api/products');if(!r.ok)return;const d=await r.json();const db=d.products.find(p=>p.id==='bracelet-r001');if(db){products[0].name=db.name;products[0].price=Number(db.price);current=products[0];render()}}catch{}})();
+
+(async function syncJewelryCatalog(){
+  try{
+    const r=await fetch('/api/products',{cache:'no-store'});if(!r.ok)return;
+    const d=await r.json(),db=(d.products||[]).find(p=>p.id==='bracelet-r001');
+    if(!db){cart=cart.filter(x=>x.id!=='bracelet-r001');cartRender();$('jewelryGrid').innerHTML='<div class="catalogEmpty"><b>JOIA TEMPORARIAMENTE INDISPONÍVEL</b><span>Este produto está desativado.</span></div>';return}
+    products[0].name=db.name;products[0].price=Number(db.price);current=products[0];render();cartRender();
+  }catch(e){console.warn('Catálogo offline; usando vitrine local.',e)}
+})();
