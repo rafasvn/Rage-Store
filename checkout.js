@@ -1,4 +1,4 @@
-const money = n => 'R$ ' + Number(n).toFixed(2).replace('.', ',');
+const money = n => '€ ' + Number(n).toFixed(2).replace('.', ',');
 const catalogByName = {
   'RAGE T-SHIRT — BLACK':'tee-black', 'RAGE T-SHIRT — WHITE':'tee-white', 'PULSEIRA RAGE R':'bracelet-r001'
 };

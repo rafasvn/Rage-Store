@@ -1,4 +1,4 @@
-const money = n => 'R$ ' + Number(n).toFixed(2).replace('.', ',');
+const money = n => '€ ' + Number(n).toFixed(2).replace('.', ',');
 (async () => {
   const user = await RageAuth.me(); if (!user) { location.href = 'login.html'; return; }
   document.getElementById('welcome').textContent = `OLÁ, ${user.name.split(' ')[0].toUpperCase()}.`;

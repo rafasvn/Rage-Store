@@ -1,0 +1,18 @@
+const $=id=>document.getElementById(id), euro=n=>'€ '+Number(n||0).toFixed(2).replace('.',',');
+let state={};
+async function api(url,opts){const r=await fetch(url,opts);let d={};try{d=await r.json()}catch{}if(r.status===401){location.href='login.html?next=admin.html';throw new Error('Sessão expirada.')}if(r.status===403){location.href='account.html';throw new Error('Acesso reservado ao administrador.')}if(!r.ok)throw new Error(d.error||'Erro no servidor.');return d}
+function msg(t){$('adminMessage').textContent=t||'';if(t)setTimeout(()=>{if($('adminMessage').textContent===t)$('adminMessage').textContent=''},3000)}
+function render(){
+ $('statUsers').textContent=state.stats.users;$('statProducts').textContent=state.stats.products;$('statOrders').textContent=state.stats.orders;$('statRevenue').textContent=euro(state.stats.revenue);
+ $('productsBody').innerHTML=state.products.map(p=>`<tr data-id="${p.id}"><td><b>${p.id}</b></td><td><input class="p-name" value="${escapeHtml(p.name)}"></td><td><input class="p-price" type="number" min="0" step="0.01" value="${(p.price_cents/100).toFixed(2)}"></td><td><input class="p-type" value="${escapeHtml(p.type)}"></td><td><input class="p-active" type="checkbox" ${p.active?'checked':''}></td><td><button class="adminBtn saveProduct">SALVAR</button></td></tr>`).join('');
+ $('ordersBody').innerHTML=state.orders.map(o=>`<tr data-id="${o.id}"><td><b>#${o.id}</b></td><td>${escapeHtml(o.customer_name)}<br><small>${escapeHtml(o.email)}</small></td><td>${new Date(o.created_at).toLocaleDateString('pt-PT')}</td><td>${euro(o.total_cents/100)}</td><td><select class="o-status">${['CONFIRMADO','EM PREPARAÇÃO','ENVIADO','ENTREGUE','CANCELADO'].map(s=>`<option ${o.status===s?'selected':''}>${s}</option>`).join('')}</select></td><td><button class="adminBtn saveOrder">ATUALIZAR</button></td></tr>`).join('');
+ $('usersBody').innerHTML=state.users.map(u=>`<tr><td>${u.id}</td><td>${escapeHtml(u.name)}</td><td>${escapeHtml(u.email)}</td><td><span class="adminBadge">${u.role.toUpperCase()}</span></td><td>${new Date(u.created_at).toLocaleDateString('pt-PT')}</td></tr>`).join('');
+ document.querySelectorAll('.saveProduct').forEach(b=>b.onclick=saveProduct);document.querySelectorAll('.saveOrder').forEach(b=>b.onclick=saveOrder)
+}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function load(){const d=await api('/api/admin/overview');state=d;$('adminIdentity').textContent=`${d.admin.name.toUpperCase()} / ${d.admin.email}`;render()}
+async function saveProduct(e){const tr=e.target.closest('tr');try{await api('/api/admin/products/'+encodeURIComponent(tr.dataset.id),{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:tr.querySelector('.p-name').value,price:Number(tr.querySelector('.p-price').value),type:tr.querySelector('.p-type').value,active:tr.querySelector('.p-active').checked})});msg('PRODUTO ATUALIZADO.');await load()}catch(e){msg(e.message.toUpperCase())}}
+async function saveOrder(e){const tr=e.target.closest('tr');try{await api('/api/admin/orders/'+tr.dataset.id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:tr.querySelector('.o-status').value})});msg('PEDIDO ATUALIZADO.');await load()}catch(e){msg(e.message.toUpperCase())}}
+document.querySelectorAll('.adminTab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.adminTab,.adminView').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('view-'+b.dataset.tab).classList.add('active')});
+$('adminLogout').onclick=async()=>{await fetch('/api/logout',{method:'POST'});location.href='login.html'};
+load().catch(e=>msg(e.message.toUpperCase()));

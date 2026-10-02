@@ -1,5 +1,5 @@
 const products=[{id:'bracelet-r001',name:'PULSEIRA RAGE R',price:429.90,image:'assets/products/rage-bracelet.png',copy:'Pulseira RAGE® prateada com elos R cravejados, acabamento polido e construção inspirada no monograma da marca.'}];
-const $=id=>document.getElementById(id),money=n=>'R$ '+Number(n).toFixed(2).replace('.',',');let current=products[0],size='18 CM';let cart=JSON.parse(localStorage.getItem('rageCart')||'[]');
+const $=id=>document.getElementById(id),money=n=>'€ '+Number(n).toFixed(2).replace('.',',');let current=products[0],size='18 CM';let cart=JSON.parse(localStorage.getItem('rageCart')||'[]');
 function render(list=products){$('jewelryGrid').innerHTML=list.map((p,i)=>`<article class="card reveal" data-id="${p.id}" style="--delay:${i*80}ms"><div class="photo jewelPhoto"><span class="index">0${i+1}</span><img src="${p.image}" alt="${p.name}"><span class="quick">VER PRODUTO ↗</span></div><div class="cardMeta"><h3>${p.name}</h3><p>${money(p.price)}</p></div></article>`).join('');document.querySelectorAll('.card').forEach(c=>c.onclick=()=>openProduct(c.dataset.id))}
 function openProduct(id){current=products.find(p=>p.id===id)||products[0];$('mainImg').src=current.image;$('productName').textContent=current.name;$('price').textContent=money(current.price);$('productCopy').textContent=current.copy;$('modal').classList.add('open');document.body.classList.add('locked')}
 function closeModal(){$('modal').classList.remove('open');document.body.classList.remove('locked')}
@@ -9,3 +9,5 @@ $('close').onclick=closeModal;document.querySelectorAll('.jewelSizes button').fo
 const photoTab=document.getElementById('photoTab'),modelTab=document.getElementById('modelTab'),modelWrap=document.getElementById('modelWrap'),mainImg=document.getElementById('mainImg');
 function setJewelView(mode){const is3d=mode==='3d';mainImg.hidden=is3d;modelWrap.hidden=!is3d;photoTab.classList.toggle('selected',!is3d);modelTab.classList.toggle('selected',is3d)}
 photoTab.addEventListener('click',()=>setJewelView('photo'));modelTab.addEventListener('click',()=>setJewelView('3d'));
+
+(async()=>{try{const r=await fetch('/api/products');if(!r.ok)return;const d=await r.json();const db=d.products.find(p=>p.id==='bracelet-r001');if(db){products[0].name=db.name;products[0].price=Number(db.price);current=products[0];render()}}catch{}})();
