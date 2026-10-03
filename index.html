@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>RAGE® </title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/svg+xml" href="assets/rage-favicon.svg">
-    <meta name="theme-color" content="#0b0b0b">
 </head>
 
-<body data-rage-splash="true">
-    <div class="announce">RAGE®  <span>—</span> QUE DEUS PERDOE ESSAS PESSOAS RUINS.</div>
+<body>
+    <div class="announce">SILENCE DROP <span>—</span> RAGE® 2026</div>
     <header class="top"><a class="brand" href="index.html"><span class="rlogo minimal-r">R</span><span>RAGE®</span></a>
         <nav><a class="active" href="index.html">CAMISAS</a><a href="jewelry.html">JOIAS</a><a
                 href="login.html">ENTRAR</a></nav><button class="cartLink" id="cartBtn">CARRINHO <span
@@ -19,17 +17,17 @@
     </header>
     <section class="hero">
         <div class="noise"></div>
-        <div class="heroCopy"><small>RAGE® / 2026</small>
-            <h1><br></h1>
-            <p>BUILT FROM RAGE.<br>MADE TO BE WORN.</p><a href="#shop">VER DROP ↓</a>
+        <div class="heroCopy"><small>RAGE® / DROP 01 / 2026</small>
+            <h1>SILENCE</h1>
+            <p>LA PLATA OU PLOMO.<br>ONE PIECE. ONE STATEMENT.</p><a href="#shop">EXPLORAR DROP ↓</a>
         </div>
         <div class="heroMark minimal-r">R</div>
         <div class="heroSide">PORTO — PT<br>EST. 2026</div>
     </section>
     <main id="shop" class="collection">
         <div class="sectionHead">
-            <div><small>01 / CLOTHING</small>
-                <h2>CAMISAS</h2>
+            <div><small>01 / SILENCE DROP</small>
+                <h2>SILENCE</h2>
             </div>
             <div class="sort"><label>ORDENAR</label><select id="sort">
                     <option value="default">PADRÃO</option>
@@ -50,27 +48,33 @@
                 conta</a></div>
         <div><b>SUPORTE</b><a href="#">Envio e entrega</a><a href="#">Trocas e devoluções</a></div>
     </footer>
-    <div class="modal" id="modal">
-        <div class="modalCard"><button class="close" id="close">FECHAR ×</button>
-            <div class="viewer">
-                <div class="viewLabel" id="viewLabel">FRENTE</div><img id="mainImg" alt="Produto">
-                <div class="viewToggle"><button id="frontBtn">FRENTE</button><button id="backBtn">COSTAS</button></div>
-            </div>
-            <div class="info"><small>RAGE® / DROP </small>
-                <h2 id="productName"></h2>
-                <p id="price"></p>
-                <div id="colorWrap"><span>COR</span>
-                    <div class="swatches"><button data-color="black" aria-label="Preto"></button><button
-                            data-color="white" aria-label="Branco"></button></div>
-                </div><span>TAMANHO</span>
-                <div class="sizes"><button>P</button><button
-                        class="selected">M</button><button>G</button><button>GG</button></div><button class="add"
-                    id="add">ADICIONAR AO CARRINHO</button>
-                <p class="copy">Camiseta RAGE® em algodão premium, modelagem oversized e estampa exclusiva. Selecione
-                    FRENTE/COSTAS para visualizar a peça.</p>
-            </div>
+    <div class="modal productExperience" id="modal">
+        <div class="productScroll" id="productScroll">
+            <button class="close" id="close">FECHAR ×</button>
+            <section class="productHero">
+                <div class="viewer">
+                    <div class="viewLabel" id="viewLabel">FRENTE</div><img id="mainImg" alt="Produto">
+                    <div class="viewToggle"><button id="frontBtn">FRENTE</button><button id="backBtn">COSTAS</button></div>
+                </div>
+                <aside class="info">
+                    <small>RAGE® / SILENCE DROP / 001</small>
+                    <h2 id="productName"></h2><p id="price"></p>
+                    <div class="silenceColor"><span>COR</span><b><i></i> OFF WHITE / BLACK / RED</b></div>
+                    <span>TAMANHO</span>
+                    <div class="sizes"><button>P</button><button class="selected">M</button><button>G</button><button>GG</button></div>
+                    <button class="add" id="add">ADICIONAR AO CARRINHO</button>
+                    <p class="copy">Polo SILENCE em estética editorial RAGE®. Gola clássica, arte frontal em halftone, emblema vermelho e composição gráfica nas costas com “LA PLATA OU PLOMO”.</p>
+                    <div class="productFacts"><span>DROP LIMITADO</span><span>OVERSIZED FIT</span><span>RAGE® 2026</span></div>
+                </aside>
+            </section>
+            <section class="detailSection">
+                <div class="detailHeading"><small>02 / DETAILS</small><h3>OLHE MAIS PERTO.</h3><p>Cada parte da SILENCE foi pensada como uma peça editorial. Clique num detalhe para ampliar.</p></div>
+                <div class="detailGrid" id="detailGrid"></div>
+            </section>
+            <section class="lookbookSection"><div><small>03 / FULL LOOK</small><h3>SILENCE<br>POLO.</h3><p>Frente, costas, textura, gola e grafismos reunidos numa única composição.</p></div><img id="lookbookImg" alt="Lookbook SILENCE"></section>
         </div>
     </div>
+    <div class="detailLightbox" id="detailLightbox"><button id="detailLightboxClose">FECHAR ×</button><span id="detailLightboxLabel"></span><img id="detailLightboxImg" alt="Detalhe da peça"></div>
     <div class="drawer" id="drawer"><button id="drawerClose">×</button>
         <p class="eyebrow">RAGE®</p>
         <h2>SEU CARRINHO</h2>
@@ -82,7 +86,6 @@
             <button class="continueShopping" id="continueShopping" type="button">CONTINUAR COMPRANDO</button>
         </div>
     </div>
-    <script src="branding.js"></script>
     <script src="script.js"></script>
     <script src="auth.js"></script>
 <script src="theme.js"></script></body>

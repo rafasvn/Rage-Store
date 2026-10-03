@@ -6,7 +6,8 @@ if(fs.existsSync(envFile)){for(const line of fs.readFileSync(envFile,'utf8').spl
 const PORT=Number(process.env.PORT||3000),isProd=process.env.NODE_ENV==='production',MAX_BODY=65536,SESSION_MS=2592000000;
 const DB={host:process.env.DB_HOST||'localhost',port:Number(process.env.DB_PORT||3306),user:process.env.DB_USER||'root',password:process.env.DB_PASSWORD||'',database:process.env.DB_NAME||'rage',waitForConnections:true,connectionLimit:Number(process.env.DB_POOL_MAX||10),queueLimit:0,charset:'utf8mb4'};
 const pool=mysql.createPool(DB);
-const CATALOG={'tee-black':{name:'RAGE T-SHIRT — BLACK',priceCents:18990,type:'clothing'},'tee-white':{name:'RAGE T-SHIRT — WHITE',priceCents:18990,type:'clothing'},'bracelet-r001':{name:'PULSEIRA RAGE R',priceCents:42990,type:'jewelry'}};
+const CATALOG={'silence-polo':{name:'SILENCE POLO — OFF WHITE',priceCents:18990,type:'clothing'},'bracelet-r001':{name:'PULSEIRA RAGE R',priceCents:42990,type:'jewelry'}};
+const RETIRED_PRODUCT_IDS=['tee-black','tee-white'];
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webp':'image/webp','.svg':'image/svg+xml','.glb':'model/gltf-binary','.gltf':'model/gltf+json','.ico':'image/x-icon'};
 async function initDb(){
  await pool.query(`CREATE TABLE IF NOT EXISTS users (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,name VARCHAR(80) NOT NULL,email VARCHAR(254) NOT NULL UNIQUE,password_hash TEXT NOT NULL,role ENUM('customer','admin') NOT NULL DEFAULT 'customer',created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`);
@@ -17,6 +18,7 @@ async function initDb(){
  await pool.query(`CREATE TABLE IF NOT EXISTS orders (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,user_id BIGINT UNSIGNED NOT NULL,customer_name VARCHAR(120) NOT NULL,address VARCHAR(200) NOT NULL,city VARCHAR(100) NOT NULL,postal_code VARCHAR(30) NOT NULL,status VARCHAR(30) NOT NULL DEFAULT 'CONFIRMADO',total_cents INT UNSIGNED NOT NULL,created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,INDEX idx_orders_user(user_id,created_at),CONSTRAINT fk_orders_user FOREIGN KEY(user_id) REFERENCES users(id)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`);
  await pool.query(`CREATE TABLE IF NOT EXISTS order_items (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,order_id BIGINT UNSIGNED NOT NULL,product_id VARCHAR(80) NOT NULL,name VARCHAR(255) NOT NULL,price_cents INT UNSIGNED NOT NULL,quantity INT UNSIGNED NOT NULL,variant JSON NOT NULL,CONSTRAINT fk_items_order FOREIGN KEY(order_id) REFERENCES orders(id) ON DELETE CASCADE) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`);
  for(const[id,p]of Object.entries(CATALOG))await pool.execute(`INSERT INTO products(id,name,price_cents,type,active) VALUES(?,?,?,?,TRUE) ON DUPLICATE KEY UPDATE name=VALUES(name),price_cents=VALUES(price_cents),type=VALUES(type),active=TRUE`,[id,p.name,p.priceCents,p.type]);
+ if(RETIRED_PRODUCT_IDS.length)await pool.query(`UPDATE products SET active=FALSE WHERE id IN (${RETIRED_PRODUCT_IDS.map(()=>'?').join(',')})`,RETIRED_PRODUCT_IDS);
 }
 function json(res,status,data,headers={}){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store',...headers});res.end(JSON.stringify(data))}
 function parseCookies(req){const out={};for(const part of(req.headers.cookie||'').split(';')){const i=part.indexOf('=');if(i>0)out[part.slice(0,i).trim()]=decodeURIComponent(part.slice(i+1).trim())}return out}
@@ -51,6 +53,7 @@ async function api(req,res,url){try{
    }
    if(req.method==='POST'&&url.pathname==='/api/admin/products/restore'){
      for(const[id,p]of Object.entries(CATALOG))await pool.execute(`INSERT INTO products(id,name,price_cents,type,active) VALUES(?,?,?,?,TRUE) ON DUPLICATE KEY UPDATE name=VALUES(name),price_cents=VALUES(price_cents),type=VALUES(type),active=TRUE`,[id,p.name,p.priceCents,p.type]);
+     if(RETIRED_PRODUCT_IDS.length)await pool.query(`UPDATE products SET active=FALSE WHERE id IN (${RETIRED_PRODUCT_IDS.map(()=>'?').join(',')})`,RETIRED_PRODUCT_IDS);
      return json(res,200,{ok:true,message:'Catálogo restaurado.'});
    }
    let m=url.pathname.match(/^\/api\/admin\/products\/([^/]+)$/);if(req.method==='PATCH'&&m){let b;try{b=await body(req)}catch{return json(res,400,{error:'Dados inválidos.'})}const name=String(b.name||'').trim(),type=String(b.type||'').trim(),price=Math.round(Number(b.price)*100),active=b.active?1:0;if(name.length<2||type.length<2||!Number.isFinite(price)||price<0)return json(res,400,{error:'Produto inválido.'});const[r]=await pool.execute('UPDATE products SET name=?,price_cents=?,type=?,active=? WHERE id=?',[name,price,type,active,decodeURIComponent(m[1])]);if(!r.affectedRows)return json(res,404,{error:'Produto não encontrado.'});return json(res,200,{ok:true})}
