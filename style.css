@@ -1860,3 +1860,12 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
 @media(max-width:760px){.adminToolbar{align-items:flex-start;flex-direction:column}.themeToggle{font-size:0;width:38px;height:38px;padding:0}.themeToggle:after{content:'◐';font-size:16px}.top{grid-template-columns:auto 1fr auto auto}.top nav{justify-content:center}}
 .catalogEmpty{grid-column:1/-1;min-height:280px;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;color:var(--text)}
 .catalogEmpty b{font-family:'Archivo Black',sans-serif;font-size:clamp(20px,3vw,38px)}.catalogEmpty span{margin-top:12px;color:var(--muted);font-size:10px;letter-spacing:.08em}
+
+/* ===== RAGE BRANDING / TAB ICON + ENTRY ===== */
+.rageSplash{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;background:var(--bg,#0b0b0b);color:var(--text,#fff);opacity:1;transition:opacity .42s cubic-bezier(.22,.61,.36,1);pointer-events:all}
+.rageSplashInner{display:flex;flex-direction:column;align-items:center;gap:12px;transform:translateY(8px) scale(.96);opacity:0;transition:transform .55s cubic-bezier(.16,1,.3,1),opacity .35s ease}
+.rageSplash.is-in .rageSplashInner{transform:translateY(0) scale(1);opacity:1}
+.rageSplash.is-out{opacity:0;pointer-events:none}
+.rageSplashR{display:grid;place-items:center;width:58px;height:58px;background:var(--text,#fff);color:var(--bg,#0b0b0b);font-family:'Archivo Black',Arial,sans-serif;font-size:38px;font-weight:900;font-style:italic;line-height:1;letter-spacing:-.12em;padding-right:5px;clip-path:polygon(13% 8%,100% 8%,84% 42%,100% 42%,91% 60%,76% 60%,63% 92%,0 92%,14% 60%,0 60%,9% 42%,23% 42%)}
+.rageSplashWord{font-size:9px;font-weight:800;letter-spacing:.34em;margin-left:.34em;color:var(--muted,#777)}
+@media (prefers-reduced-motion:reduce){.rageSplash,.rageSplashInner{transition:none}.rageSplashInner{opacity:1;transform:none}}
