@@ -1877,3 +1877,13 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
 .detailLightbox{position:fixed;inset:0;z-index:100;background:rgba(5,5,5,.96);display:none;align-items:center;justify-content:center;padding:6vw}.detailLightbox.open{display:flex}.detailLightbox img{max-width:min(900px,88vw);max-height:82vh;object-fit:contain}.detailLightbox button{position:absolute;right:24px;top:22px;background:none;border:0;color:#fff;font:inherit;font-size:9px;letter-spacing:.14em;cursor:pointer}.detailLightbox span{position:absolute;left:24px;top:25px;color:#aaa;font-size:9px;letter-spacing:.18em}
 @media(max-width:900px){.productHero{grid-template-columns:1fr}.productExperience .viewer{min-height:72vh}.productExperience .viewer img{height:62vh}.productExperience .info{padding:60px 7vw;border-left:0;border-top:1px solid var(--line)}.detailGrid{grid-template-columns:1fr 1fr}.lookbookSection{grid-template-columns:1fr}.silenceCard .photo{height:95vw}.silenceCard .photo img{width:95%}}
 @media(max-width:560px){.detailSection{padding:75px 5vw}.detailGrid{grid-template-columns:1fr}.productExperience .viewer{padding:40px 10px}.viewToggle{bottom:18px}.heroCopy h1{font-size:20vw}.lookbookSection{padding:70px 5vw}.silenceCard .cardMeta{gap:20px}}
+
+/* SILENCE DROP — espaço reservado para a próxima longsleeve */
+.upcomingCard { cursor: default; }
+.upcomingPhoto { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #171717; min-height: 360px; }
+.upcomingArtwork { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 360px; background: radial-gradient(ellipse at center, #292929 0%, #111 68%); color: #555; }
+.upcomingMonogram { font-size: clamp(9rem, 22vw, 20rem); font-weight: 900; line-height: 1; opacity: .19; transform: skew(-12deg); }
+.upcomingCross { position: absolute; color: #777; font-size: 2.5rem; opacity: .65; }
+.upcomingOverlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: #fff; font-size: clamp(1.1rem, 3vw, 2rem); font-weight: 800; letter-spacing: .24em; white-space: nowrap; text-align: center; }
+.upcomingPrice { font-size: .75rem !important; letter-spacing: .08em; opacity: .6; }
+@media (max-width: 480px) { .upcomingOverlay { font-size: 1.05rem; letter-spacing: .14em; } }

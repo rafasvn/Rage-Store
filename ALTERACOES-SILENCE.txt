@@ -1,0 +1,3 @@
+SILENCE DROP: adicionada segunda posição de catálogo para futura longsleeve (COMING SOON, sem preço, sem compra e sem alteração à BD).
+JOIAS: texto editorial alterado para BRILHE INTENSSAMENTE.
+ATENÇÃO: este pacote parte do último ZIP organizado, não contém alterações posteriores feitas diretamente no GitHub. Para preservar o último commit em jewelry.html, copie apenas o bloco statement atualizado ou aplique a alteração manualmente no ficheiro atual.

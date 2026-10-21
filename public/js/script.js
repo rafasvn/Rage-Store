@@ -18,7 +18,9 @@ const $=id=>document.getElementById(id), money=v=>new Intl.NumberFormat('pt-PT',
 let current=null, view='front', size='M';
 function render(list=products){
   $('grid').innerHTML=list.map((p,i)=>`<article class="card silenceCard reveal" data-id="${p.id}" style="--delay:${i*80}ms"><div class="photo"><span class="index">DROP 01</span><img src="${p.front}" alt="${p.name}"><span class="quick">EXPLORAR A PEÇA ↗</span><span class="dropBadge">SILENCE</span></div><div class="cardMeta"><div><small>RAGE® / SILENCE DROP</small><h3>${p.name}</h3></div><p>${money(p.price)}</p></div></article>`).join('');
-  document.querySelectorAll('.card').forEach(c=>c.onclick=()=>openProduct(c.dataset.id));
+  // Espaço editorial reservado à futura longsleeve; não está à venda nem na base de dados.
+  $('grid').insertAdjacentHTML('beforeend', `<article class="card silenceCard upcomingCard reveal" aria-label="Longsleeve RAGE — em breve" style="--delay:${list.length*80}ms"><div class="photo upcomingPhoto"><span class="index">DROP 01 / 002</span><div class="upcomingArtwork" aria-hidden="true"><span class="upcomingMonogram">R</span><span class="upcomingCross">✦</span></div><span class="upcomingOverlay">COMING SOON</span><span class="dropBadge">RAGE®</span></div><div class="cardMeta"><div><small>RAGE® / SILENCE DROP</small><h3>LONGSLEEVE — EM BREVE</h3></div><p class="upcomingPrice">POR ANUNCIAR</p></div></article>`);
+  document.querySelectorAll('.card[data-id]').forEach(c=>c.onclick=()=>openProduct(c.dataset.id));
 }
 function setView(next){view=next;$('mainImg').src=current[next];$('viewLabel').textContent=next==='front'?'FRENTE':'COSTAS';$('frontBtn').classList.toggle('active',next==='front');$('backBtn').classList.toggle('active',next==='back')}
 function openProduct(id){
