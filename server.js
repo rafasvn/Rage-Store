@@ -61,5 +61,24 @@ async function api(req,res,url){try{
  }
  return json(res,404,{error:'Rota não encontrada.'})
  }catch(e){console.error('Erro da API:',e);return json(res,500,{error:'Erro interno do servidor.'})}}
-function serve(req,res,url){let pathname;try{pathname=decodeURIComponent(url.pathname)}catch{res.writeHead(400);return res.end('Bad Request')}if(pathname==='/')pathname='/index.html';const safe=path.normalize(pathname).replace(/^(\.\.(\/|\\|$))+/,''),file=path.join(ROOT,safe);if(!file.startsWith(ROOT)||path.basename(file)==='.env'){res.writeHead(403);return res.end('Forbidden')}fs.stat(file,(err,st)=>{if(err||!st.isFile()){res.writeHead(404,{'Content-Type':'text/plain; charset=utf-8'});return res.end('404')}const ext=path.extname(file).toLowerCase();res.writeHead(200,{'Content-Type':mime[ext]||'application/octet-stream','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','X-Frame-Options':'DENY','Content-Security-Policy':"default-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' https://unpkg.com; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"});fs.createReadStream(file).pipe(res)})}
+// Serve only explicitly public frontend files. Keep credentials and source private.
+const PUBLIC_DIR=path.join(ROOT,'public');
+const PAGES=new Set(["account.html", "admin.html", "checkout.html", "index.html", "jewelry.html", "login.html", "order-success.html", "register.html"]);
+function serve(req,res,url){
+ if(req.method!=='GET'&&req.method!=='HEAD'){res.writeHead(405);return res.end('Method Not Allowed')}
+ let pathname;try{pathname=decodeURIComponent(url.pathname)}catch{res.writeHead(400);return res.end('Bad Request')}
+ if(pathname==='/' )pathname='/index.html';
+ if(pathname.includes('\\')||pathname.split('/').includes('..')||pathname.includes('\0')){res.writeHead(403);return res.end('Forbidden')}
+ if(PAGES.has(pathname.slice(1)))pathname='/pages'+pathname;
+ const file=path.resolve(PUBLIC_DIR,'.'+pathname);
+ if(!file.startsWith(PUBLIC_DIR+path.sep)){res.writeHead(403);return res.end('Forbidden')}
+ fs.stat(file,(err,st)=>{
+  if(err||!st.isFile()){res.writeHead(404,{'Content-Type':'text/plain; charset=utf-8'});return res.end('Not Found')}
+  const type=mime[path.extname(file).toLowerCase()]||'application/octet-stream';
+  res.writeHead(200,{'Content-Type':type,'X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','X-Frame-Options':'DENY','Content-Security-Policy':"default-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' https://unpkg.com https://cdn.jsdelivr.net; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"});
+  if(req.method==='HEAD')return res.end();
+  fs.createReadStream(file).pipe(res);
+ });
+}
+
 (async()=>{try{await initDb();await cleanup();setInterval(cleanup,3600000).unref();http.createServer(async(req,res)=>{const url=new URL(req.url,`http://${req.headers.host||'localhost'}`);return url.pathname.startsWith('/api/')?api(req,res,url):serve(req,res,url)}).listen(PORT,()=>console.log(`RAGE® + MySQL rodando em http://localhost:${PORT}`))}catch(e){console.error('\nNão foi possível conectar/inicializar o MySQL.');console.error('Detalhe:',e.message);console.error('\nConfira: 1) MySQL está ligado; 2) banco rage existe; 3) DB_USER/DB_PASSWORD do .env; 4) porta 3306.\n');process.exit(1)}})();
